@@ -1,6 +1,6 @@
 <template>
   <div>
-    11111
+    <router-view></router-view>
   </div>
 </template>
 
@@ -16,7 +16,7 @@ export default {
   async created () {
     try {
       const res = await getAllChannelsAPI()
-      console.log(res)
+      console.log('所有频道数据' + res)
     } catch (err) {
       // 给用户弹窗提示
       console.dir(err)
