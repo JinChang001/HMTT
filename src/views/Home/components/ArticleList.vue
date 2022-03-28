@@ -10,15 +10,16 @@
         @load="onLoad"
       >
         <!-- 文字列表 -->
-        <ArticleItem v-for="item in list" :key="item.art_id" :artObj="item"></ArticleItem>
+        <ArticleItem v-for="item in list" :key="item.art_id" :artObj="item" @disLikeEV="disLikeFn" @reportEV="reportFn"></ArticleItem>
       </van-list>
     </van-pull-refresh>
   </div>
 </template>
 
 <script>
-import { getAllArticleListAPI } from '@/api'
+import { getAllArticleListAPI, dislikeArticleAPI, articleReportsAPI } from '@/api'
 import ArticleItem from './ArticItem.vue'
+import { Notify } from 'vant'
 
 // 问题1: 网页刚打开, created里的请求和onLoad里请求同时发送, 请求的都是最新数据, onLoad中, 2次一样的数据合并, 数据重复, key重复报错
 // 原因: van-list组件, 组件挂载时, 默认就会判定一次是否触底
@@ -77,6 +78,16 @@ export default {
       this.list = []
 
       this.getArticleListFn()
+    },
+    // 反馈的不感兴趣
+    async disLikeFn (artId) {
+      await dislikeArticleAPI(artId)
+      Notify({ type: 'success', message: '反馈成功' })
+    },
+    // 举报文章
+    async reportFn (data) {
+      await articleReportsAPI(data)
+      Notify({ type: 'success', message: '举报成功' })
     }
   }
 }

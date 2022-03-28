@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import 'amfe-flexible' // 引入flexible.js => 设置根标签字体大小(移动端适配)
-import { NavBar, Form, Field, Button, Tabbar, TabbarItem, Icon, Tab, Tabs, Cell, List, PullRefresh } from 'vant'
+import { NavBar, Form, Field, Button, Tabbar, TabbarItem, Icon, Tab, Tabs, Cell, List, PullRefresh, ActionSheet } from 'vant'
 
 Vue.use(NavBar)
 Vue.use(Form)
@@ -17,6 +17,7 @@ Vue.use(Tabs)
 Vue.use(Cell)
 Vue.use(List)
 Vue.use(PullRefresh)
+Vue.use(ActionSheet)
 
 Vue.config.productionTip = false
 

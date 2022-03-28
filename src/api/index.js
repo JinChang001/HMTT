@@ -43,3 +43,29 @@ export const getAllArticleListAPI = ({ channel_id, timestamp }) => request({
     Authorization: `Bearer ${getToken()}`
   }
 })
+
+// 新闻 - 对文章不喜欢
+export const dislikeArticleAPI = (artId) => request({
+  url: '/v1_0/article/dislikes',
+  method: 'POST',
+  headers: {
+    Authorization: `Bearer ${getToken()}`
+  },
+  data: {
+    target: artId
+  }
+})
+
+// 新闻 - 举报文章
+export const articleReportsAPI = ({ target, type, remark }) => request({
+  url: '/v1_0/article/reports',
+  method: 'POST',
+  headers: {
+    Authorization: `Bearer ${getToken()}`
+  },
+  data: {
+    target,
+    type,
+    remark
+  }
+})
